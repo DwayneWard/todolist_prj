@@ -1,3 +1,3 @@
 DJANGO_SECRET_KEY=django-insecure-omg7vo)9oa8kh-x=rdi_liyynczbbqyh)a(!=dxbn=6up^zgy0
+DATABASE_URL=psql://postgres:password@postgres:5432/todoist_db
 DEBUG=True
-DATABASE_URL=psql://postgres:password@127.0.0.1:5432/todoist_db
