@@ -1,0 +1,3 @@
+DJANGO_SECRET_KEY=django-insecure-omg7vo)9oa8kh-x=rdi_liyynczbbqyh)a(!=dxbn=6up^zgy0
+DEBUG=False
+DATABASE_URL=psql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
