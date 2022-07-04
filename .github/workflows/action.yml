@@ -28,7 +28,7 @@ jobs:
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
           cat .docker_ci_env | envsubst > deploy/.env
       - name: clone files to server
-        uses: appleboy/dcp-action@master
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
