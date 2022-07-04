@@ -8,8 +8,6 @@ services:
       - api
   api:
     image: dwayneward/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    ports:
-      - "80:80"
     depends_on:
       postgres:
         condition: service_healthy
