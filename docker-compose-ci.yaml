@@ -14,14 +14,14 @@ services:
       migrations:
         condition: service_completed_successfully
     volumes:
-      - ./.env:/app/.env
+      - ./.docker_ci_env:/app/.env
   migrations:
     image: dwayneward/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
-      - ./.env:/app/.env
+      - ./.docker_ci_env:/app/.env
     command: python manage.py migrate
   postgres:
     image: postgres:latest
