@@ -16,15 +16,15 @@ import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env(DEBUG=(bool, False),
-                  SECRET_KEY=(str, 'django-insecure-omg7vo)9oa8kh-x=rdi_liyynczbbqyh)a(!=dxbn=6up^zgy0'))
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+env = environ.Env(DEBUG=(bool, False), SECRET_KEY=(str, "spifq9otuo"))
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'social_django',
     'core',
     'drf_yasg',
 ]
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "social_django.middleware.SocialAuthExceptionMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -76,6 +78,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 AUTH_USER_MODEL = 'core.User'
+
+AUTHENTICATION_BACKENDS = (
+    "social_core.backends.vk.VKOAuth2",
+    "django.contrib.auth.backends.ModelBackend",
+)
+
+# Social auth
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_URL_NAMESPACE = "social"
+SOCIAL_AUTH_PIPELINE = (
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.social_auth.associate_by_email",
+    "social_core.pipeline.user.create_user",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
+)
+SOCIAL_AUTH_VK_OAUTH2_KEY = "8215623"
+SOCIAL_AUTH_VK_OAUTH2_SECRET = "02A2BCtnSQuXQU8cn07R"
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ["email", "photos", "notify"]
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/logged-in/"
+SOCIAL_AUTH_LOGIN_ERROR_URL = "/login-error/"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

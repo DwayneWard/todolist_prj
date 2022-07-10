@@ -34,6 +34,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("oauth/", include("social_django.urls", namespace="social")),
     path('core/', include("core.urls")),
     re_path(
         r"^swagger/$",

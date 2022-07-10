@@ -39,6 +39,7 @@ class ProfileView(RetrieveUpdateDestroyAPIView):
         logout(request)
         return Response({})
 
+
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class UpdatePasswordView(UpdateAPIView):
     queryset = User.objects.all()
