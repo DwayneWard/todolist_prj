@@ -1,5 +1,5 @@
 DJANGO_SECRET_KEY=django-insecure-omg7vo)9oa8kh-x=rdi_liyynczbbqyh)a(!=dxbn=6up^zgy0
-DATABASE_URL=psql://postgres:password@postgres:5432/todoist_db
 DEBUG=True
+DATABASE_URL=psql://postgres:password@postgres:5432/todoist_db
 SOCIAL_AUTH_VK_OAUTH2_KEY=8215623
 SOCIAL_AUTH_VK_OAUTH2_SECRET=02A2BCtnSQuXQU8cn07R
