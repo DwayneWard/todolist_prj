@@ -1,9 +1,10 @@
-version: '3.9'
+version: "3.9"
+
 services:
   front:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-38
     ports:
-      - "8080:80"
+      - 8080:80
     depends_on:
       - api
   api:
@@ -36,6 +37,4 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-volumes:
-  postgres_data:
+      - ./postgres-data:/var/lib/postgresql/data

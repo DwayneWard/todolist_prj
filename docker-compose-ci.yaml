@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   front:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-38
     ports:
       - "8080:80"
     depends_on:
@@ -14,14 +14,14 @@ services:
       migrations:
         condition: service_completed_successfully
     volumes:
-      - ./.docker_ci_env:/app/.env
+      - ./.env:/app/.env
   migrations:
     image: dwayneward/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
-      - ./.docker_ci_env:/app/.env
+      - ./.env:/app/.env
     command: python manage.py migrate
   postgres:
     image: postgres:latest
