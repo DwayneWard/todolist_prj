@@ -119,17 +119,17 @@ SOCIAL_AUTH_PIPELINE = (
     "social_core.pipeline.social_auth.load_extra_data",
     "social_core.pipeline.user.user_details",
 )
-SOCIAL_AUTH_VK_OAUTH2_KEY = "8215623"
+SOCIAL_AUTH_VK_OAUTH2_KEY = env("SOCIAL_AUTH_VK_OAUTH2_KEY")
 SOCIAL_AUTH_VK_OAUTH2_SECRET = env("SOCIAL_AUTH_VK_OAUTH2_SECRET")
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ["email", "photos", "notify"]
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged_in/'
 SOCIAL_AUTH_LOGIN_ERROR_URL = "/login-error/"
 SOCIAL_AUTH_VK_OAUTH2_WHITELISTED_DOMAINS = ['vleontev.ga:8080']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
