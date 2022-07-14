@@ -125,6 +125,7 @@ SOCIAL_AUTH_VK_OAUTH2_SCOPE = ["email", "photos", "notify"]
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged_in/'
 SOCIAL_AUTH_LOGIN_ERROR_URL = "/"
 SOCIAL_AUTH_VK_OAUTH2_WHITELISTED_DOMAINS = ['vleontev.ga']
+LOGIN_REDIRECT_URL = '/logged_in/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
