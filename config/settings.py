@@ -122,10 +122,10 @@ SOCIAL_AUTH_PIPELINE = (
 SOCIAL_AUTH_VK_OAUTH2_KEY = "8215623"
 SOCIAL_AUTH_VK_OAUTH2_SECRET = env("SOCIAL_AUTH_VK_OAUTH2_SECRET")
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ["email", "photos", "notify"]
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged_in/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/categories/'
 SOCIAL_AUTH_LOGIN_ERROR_URL = "/"
 SOCIAL_AUTH_VK_OAUTH2_WHITELISTED_DOMAINS = ['vleontev.ga']
-LOGIN_REDIRECT_URL = '/logged_in/'
+LOGIN_REDIRECT_URL = '/categories/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
