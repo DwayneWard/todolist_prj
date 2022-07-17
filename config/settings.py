@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "social_django",
 ]
-APPS = ["core", "drf_yasg"]
+APPS = ["core", "goals", "drf_yasg", ]
 INSTALLED_APPS += APPS
 
 MIDDLEWARE = [
@@ -99,6 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 AUTH_USER_MODEL = "core.User"
+
 AUTHENTICATION_BACKENDS = (
     "social_core.backends.vk.VKOAuth2",
     "django.contrib.auth.backends.ModelBackend",
@@ -121,13 +122,15 @@ SOCIAL_AUTH_PIPELINE = (
 SOCIAL_AUTH_VK_OAUTH2_KEY = env("SOCIAL_AUTH_VK_OAUTH2_KEY")
 SOCIAL_AUTH_VK_OAUTH2_SECRET = env("SOCIAL_AUTH_VK_OAUTH2_SECRET")
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ["email", "photos", "notify"]
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/logged-in/"
-SOCIAL_AUTH_LOGIN_ERROR_URL = "/login-error/"
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/categories/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = "/auth/"
+SOCIAL_AUTH_VK_OAUTH2_WHITELISTED_DOMAINS = ['vleontev.ga']
+LOGIN_REDIRECT_URL = '/categories/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
