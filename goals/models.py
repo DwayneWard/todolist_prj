@@ -4,19 +4,89 @@ from django.utils import timezone
 from core.models import User
 
 
-class GoalCategory(models.Model):
-    class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+# Абстрактный класс для проставления даты в созданном объекте
 
-    title = models.CharField(verbose_name="Название", max_length=255)
-    user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT)
-    is_deleted = models.BooleanField(verbose_name="Удалена", default=False)
+class DatesModel(models.Model):
+    class Meta:
+        abstract = True
+
     created = models.DateTimeField(verbose_name="Дата создания")
     updated = models.DateTimeField(verbose_name="Дата последнего обновления")
 
     def save(self, *args, **kwargs):
-        if not self.id:  # Когда объект только создается, у него еще нет id
-            self.created = timezone.now()  # проставляем дату создания
-        self.updated = timezone.now()  # проставляем дату обновления
+        if not self.id:
+            self.created = timezone.now()
+        self.updated = timezone.now()
         return super().save(*args, **kwargs)
+
+
+class GoalCategory(DatesModel):
+    title = models.CharField(verbose_name="Название", max_length=255)
+    user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT)
+    is_deleted = models.BooleanField(verbose_name="Удалена", default=False)
+
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
+    def __str__(self):
+        return self.title
+
+
+class Goal(DatesModel):
+    class Status(models.IntegerChoices):
+        to_do = 1, "К выполнению"
+        in_progress = 2, "В процессе"
+        done = 3, "Выполнено"
+        archived = 4, "Архив"
+
+    class Priority(models.IntegerChoices):
+        low = 1, "Низкий"
+        medium = 2, "Средний"
+        high = 3, "Высокий"
+        critical = 4, "Критический"
+
+    user = models.ForeignKey(
+        User,
+        verbose_name="Пользователь",
+        related_name="goals",
+        on_delete=models.PROTECT,
+    )
+
+    title = models.CharField(
+        verbose_name="Заголовок",
+        max_length=255
+    )
+
+    description = models.TextField(
+        verbose_name="Описание",
+        null=True,
+        blank=True,
+        default=None,
+    )
+
+    deadline = models.DateField(
+        verbose_name="Дата выполнения",
+        null=True,
+        blank=True,
+        default=None,
+    )
+
+    status = models.PositiveIntegerField(
+        verbose_name="Статус",
+        choices=Status.choices,
+        default=Status.to_do,
+    )
+
+    priority = models.PositiveIntegerField(
+        verbose_name="Приоритет",
+        choices=Priority.choices,
+        default=Priority.medium,
+    )
+
+    class Meta:
+        verbose_name = "Цель"
+        verbose_plural_name = "Цели"
+
+    def __str__(self):
+        return self.title
