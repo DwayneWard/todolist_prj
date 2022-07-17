@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from goals.models import Goal, GoalCategory
+
+admin.site.register(Goal)
+admin.site.register(GoalCategory)

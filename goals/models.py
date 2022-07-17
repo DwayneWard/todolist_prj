@@ -86,7 +86,7 @@ class Goal(DatesModel):
 
     class Meta:
         verbose_name = "Цель"
-        verbose_plural_name = "Цели"
+        verbose_name_plural = "Цели"
 
     def __str__(self):
         return self.title

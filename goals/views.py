@@ -32,5 +32,5 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
         with transaction.atomic():
             instance.is_deleted = True
             instance.save()
-            Goal.objects.filter(category=instance).update(status=Goal.Status.archived)
+            GoalCategory.objects.filter(category=instance).update(status=Goal.Status.archived)
         return instance
