@@ -4,9 +4,11 @@ from django.utils import timezone
 from core.models import User
 
 
-# Абстрактный класс для проставления даты в созданном объекте
-
 class DatesModel(models.Model):
+    """
+    Абстрактный класс для проставления даты в созданном объекте
+    """
+
     class Meta:
         abstract = True
 
