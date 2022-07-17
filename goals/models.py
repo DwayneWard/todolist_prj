@@ -48,6 +48,12 @@ class Goal(DatesModel):
         high = 3, "Высокий"
         critical = 4, "Критический"
 
+    category = models.ForeignKey(
+        GoalCategory,
+        verbose_name="Категория",
+        on_delete=models.PROTECT
+    )
+
     user = models.ForeignKey(
         User,
         verbose_name="Пользователь",

@@ -40,7 +40,7 @@ class GoalCreateSerializer(serializers.ModelSerializer):
 
 class GoalSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-
+    category = GoalCategorySerializer()
 
     class Meta:
         model = Goal
@@ -49,7 +49,7 @@ class GoalSerializer(serializers.ModelSerializer):
 
     def validate_category(self, value):
         if value.is_deleted:
-            raise serializers.ValidationError("not allowed in deleted category")
+            raise serializers.ValidationError("Не разрешено в удаленной категории")
 
         if value.user != self.context["request"].user:
             raise serializers.ValidationError("Вы не владелец данной категории")
