@@ -73,7 +73,7 @@ class Goal(DatesModel):
         default=None,
     )
 
-    deadline = models.DateField(
+    due_date = models.DateField(
         verbose_name="Дата выполнения",
         null=True,
         blank=True,

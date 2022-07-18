@@ -80,8 +80,8 @@ class GoalListView(ListAPIView):
     ]
     filterset_class = GoalDateFilter
     search_fields = ["title", "description"]
-    ordering_fields = ["deadline", "priority"]
-    ordering = ["priority", "deadline"]
+    ordering_fields = ["due_date", "priority"]
+    ordering = ["priority", "due_date"]
 
     def get_queryset(self):
         return Goal.objects.filter(user=self.request.user)

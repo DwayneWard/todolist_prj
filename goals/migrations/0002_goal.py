@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('updated', models.DateTimeField(verbose_name='Дата последнего обновления')),
                 ('title', models.CharField(max_length=255, verbose_name='Заголовок')),
                 ('description', models.TextField(blank=True, default=None, null=True, verbose_name='Описание')),
-                ('deadline', models.DateField(blank=True, default=None, null=True, verbose_name='Дата выполнения')),
+                ('due_date', models.DateField(blank=True, default=None, null=True, verbose_name='Дата выполнения')),
                 ('status', models.PositiveIntegerField(choices=[(1, 'К выполнению'), (2, 'В процессе'), (3, 'Выполнено'), (4, 'Архив')], default=1, verbose_name='Статус')),
                 ('priority', models.PositiveIntegerField(choices=[(1, 'Низкий'), (2, 'Средний'), (3, 'Высокий'), (4, 'Критический')], default=2, verbose_name='Приоритет')),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='goals.goalcategory', verbose_name='Категория')),
