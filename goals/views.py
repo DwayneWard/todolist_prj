@@ -64,7 +64,7 @@ class GoalView(RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get_queryset(self):
-        return Goal.objects.filter(category__user=self.request.user)
+        return Goal.objects.filter(user=self.request.user)
 
     def perform_destroy(self, instance):
         instance.status = Goal.Status.archived
@@ -88,13 +88,13 @@ class GoalListView(ListAPIView):
     ordering = ["priority", "deadline"]
 
     def get_queryset(self):
-        return Goal.objects.filter(category__user=self.request.user)
+        return Goal.objects.filter(user=self.request.user)
 
 
 class CommentCreateView(CreateAPIView):
     model = GoalComment
     serializer_class = CommentCreateSerializer
-    permission_classes = [permissions.IsAuthenticated, CommentPermissions, ]
+    permission_classes = [permissions.IsAuthenticated, ]
 
 
 class CommentListView(ListAPIView):
@@ -107,13 +107,13 @@ class CommentListView(ListAPIView):
     ordering = '-id'
 
     def get_queryset(self):
-        return GoalComment.objects.filter(goal__category__user=self.request.user)
+        return GoalComment.objects.filter(user=self.request.user)
 
 
 class CommentView(RetrieveUpdateDestroyAPIView):
     model = GoalComment
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated, CommentPermissions]
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def get_queryset(self):
-        return GoalComment.objects.filter(goal__category__user=self.request.user)
+        return GoalComment.objects.filter(user=self.request.user)
