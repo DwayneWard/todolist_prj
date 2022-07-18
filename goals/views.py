@@ -51,13 +51,13 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
 class GoalCreateView(CreateAPIView):
     model = Goal
     serializer_class = GoalCreateSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class GoalView(RetrieveUpdateDestroyAPIView):
     model = Goal
     serializer_class = GoalSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Goal.objects.filter(user=self.request.user)
@@ -70,8 +70,8 @@ class GoalView(RetrieveUpdateDestroyAPIView):
 
 class GoalListView(ListAPIView):
     model = Goal
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = GoalSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
     pagination_class = LimitOffsetPagination
     filter_backends = [
         DjangoFilterBackend,
