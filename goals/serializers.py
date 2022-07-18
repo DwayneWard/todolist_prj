@@ -24,7 +24,6 @@ class GoalCategorySerializer(serializers.ModelSerializer):
 
 class GoalCreateSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    category = serializers.PrimaryKeyRelatedField(queryset=GoalCategory.objects.all())
 
     class Meta:
         model = Goal
