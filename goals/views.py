@@ -6,7 +6,6 @@ from rest_framework.pagination import LimitOffsetPagination
 
 from goals.filters import GoalDateFilter
 from goals.models import GoalCategory, Goal, GoalComment
-from goals.permissions import CommentPermissions
 from goals.serializers import GoalCategoryCreateSerializer, GoalCategorySerializer, GoalCreateSerializer, \
     GoalSerializer, CommentCreateSerializer, CommentSerializer
 
@@ -42,13 +41,12 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
     serializer_class = GoalCategorySerializer
 
     def get_queryset(self):
-        return GoalCategory.objects.all()
+        return GoalCategory.objects.filter(user=self.request.user, is_deleted=False)
 
     def perform_destroy(self, instance):
         with transaction.atomic():
             instance.is_deleted = True
             instance.save()
-            Goal.objects.filter(category=instance).update(status=Goal.Status.archived)
         return instance
 
 
