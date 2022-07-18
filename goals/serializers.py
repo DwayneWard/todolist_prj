@@ -29,6 +29,9 @@ class GoalCreateSerializer(serializers.ModelSerializer):
         if value.is_deleted:
             raise serializers.ValidationError("Не разрешено в удаленной категории")
 
+        if value.user != self.context["request"].user:
+            raise serializers.ValidationError("Вы не владелец данной категории")
+
         return value
 
     class Meta:
