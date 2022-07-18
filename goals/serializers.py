@@ -24,7 +24,6 @@ class GoalCategorySerializer(serializers.ModelSerializer):
 
 class GoalCreateSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    category = serializers.PrimaryKeyRelatedField(queryset=GoalCategory.objects.all())
 
     def validate_category(self, value):
         if value.is_deleted:
@@ -40,7 +39,6 @@ class GoalCreateSerializer(serializers.ModelSerializer):
 
 class GoalSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    category = GoalCategorySerializer()
 
     class Meta:
         model = Goal
@@ -68,7 +66,6 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    goal = GoalSerializer(read_only=True)
 
     class Meta:
         model = GoalComment
