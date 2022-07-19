@@ -30,7 +30,7 @@ class GoalCategoryListView(ListAPIView):
     search_fields = ["title"]
 
     def get_queryset(self):
-        return GoalCategory.objects.all()
+        return GoalCategory.objects.filter(user=self.request.user, is_deleted=False)
 
 
 class GoalCategoryView(RetrieveUpdateDestroyAPIView):
