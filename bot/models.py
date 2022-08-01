@@ -6,10 +6,19 @@ CODE_VOCABULARY = "qwertyuasdfghkzxvbnm123456789"
 
 
 class TgUser(models.Model):
-    tg_id = models.BigIntegerField(verbose_name="tg id", unique=True)
-    tg_chat_id = models.BigIntegerField(verbose_name="tg chat id")
+    tg_id = models.BigIntegerField(
+        verbose_name="Telegram ID",
+        unique=True,
+    )
+    tg_chat_id = models.BigIntegerField(
+        verbose_name='Telegram Chat ID',
+    )
     username = models.CharField(
-        max_length=512, verbose_name="tg username", null=True, blank=True, default=None
+        max_length=512,
+        verbose_name='Telegram username',
+        null=True,
+        blank=True,
+        default=None,
     )
     user = models.ForeignKey(
         "core.User",
@@ -17,15 +26,15 @@ class TgUser(models.Model):
         null=True,
         blank=True,
         default=None,
-        verbose_name="связанный пользователь",
+        verbose_name='Пользователь из приложения',
     )
     verification_code = models.CharField(
         max_length=32, verbose_name="код подтверждения"
     )
 
     class Meta:
-        verbose_name = "tg пользователь"
-        verbose_name_plural = "tg пользователи"
+        verbose_name = "Telegram пользователь"
+        verbose_name_plural = "Telegram пользователи"
 
     def set_verification_code(self):
         code = "".join([random.choice(CODE_VOCABULARY) for _ in range(12)])

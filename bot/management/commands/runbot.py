@@ -1,9 +1,9 @@
-from django.conf import settings
 from django.core.management import BaseCommand
 
 from bot.models import TgUser
 from bot.tg.client import TgClient
 from bot.tg.dc import Message
+from config import settings
 from goals.models import Goal
 
 
@@ -27,7 +27,7 @@ class Command(BaseCommand):
             resp_msg = [f"#{item.id} {item.title}" for item in gls]
             self.tg_client.send_message(msg.chat.id, "\n".join(resp_msg))
         else:
-            self.tg_client.send_message(msg.chat.id, "[goals list is empty]")
+            self.tg_client.send_message(msg.chat.id, "Ваш список целей пуст")
 
     def handle_verified_user(self, msg: Message, tg_user: TgUser):
         if not msg.text:
@@ -35,18 +35,18 @@ class Command(BaseCommand):
         if "/goals" in msg.text:
             self.fetch_tasks(msg, tg_user)
         else:
-            self.tg_client.send_message(msg.chat.id, "[unknown command]")
+            self.tg_client.send_message(msg.chat.id, "Неизвестная команда")
 
     def handle_message(self, msg: Message):
         tg_user, created = TgUser.objects.get_or_create(
             tg_id=msg.from_.id,
             defaults={
-                "tg_chat_id": msg.chat.id,
+                # "tg_chat_id": msg.chat.id,
                 "username": msg.from_.username,
             },
         )
         if created:
-            self.tg_client.send_message(msg.chat.id, "[greeting]")
+            self.tg_client.send_message(msg.chat.id, "Вы зарегистрированы")
 
         if tg_user.user:
             self.handle_verified_user(msg, tg_user)

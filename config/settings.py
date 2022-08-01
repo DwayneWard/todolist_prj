@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "social_django",
 ]
-APPS = ["core", "goals", "drf_yasg", ]
+APPS = ["core", "goals", "bot", "drf_yasg", ]
 INSTALLED_APPS += APPS
 
 MIDDLEWARE = [
@@ -150,4 +150,4 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-BOT_TOKEN = env("BOT_TOKEN")
+BOT_TOKEN = env.str("BOT_TOKEN")
