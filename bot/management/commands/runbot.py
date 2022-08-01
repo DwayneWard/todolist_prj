@@ -18,7 +18,7 @@ class Command(BaseCommand):
         tg_user.set_verification_code()
         tg_user.save(update_fields=["verification_code"])
         self.tg_client.send_message(
-            msg.chat.id, f"[verification code] {tg_user.verification_code}"
+            msg.chat.id, f" Ваш код - {tg_user.verification_code}"
         )
 
     def fetch_tasks(self, msg: Message, tg_user: TgUser):
