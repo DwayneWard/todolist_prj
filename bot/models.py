@@ -14,7 +14,6 @@ class TgUser(models.Model):
         verbose_name='Telegram Chat ID',
         null=True,
         blank=True,
-        default=None,
     )
     username = models.CharField(
         max_length=512,
