@@ -3,3 +3,4 @@ DEBUG=True
 DATABASE_URL=psql://postgres:password@postgres:5432/todoist_db
 SOCIAL_AUTH_VK_OAUTH2_KEY=
 SOCIAL_AUTH_VK_OAUTH2_SECRET=
+BOT_TOKEN=
