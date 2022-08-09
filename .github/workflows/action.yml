@@ -1,5 +1,9 @@
 name: Build and push action
-on: [ push ]
+on:
+  push:
+    branches:
+      - main
+      - master
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
