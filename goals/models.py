@@ -61,6 +61,7 @@ class BoardParticipant(DatesModel):
         verbose_name="Роль", choices=Role.choices, default=Role.owner
     )
 
+
 class GoalCategory(DatesModel):
     board = models.ForeignKey(
         Board,
