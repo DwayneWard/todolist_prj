@@ -1,10 +1,15 @@
+import pytest
 from pytest_factoryboy import register
 
-from tests.factories import UserFactory, GoalFactory, GoalCommentFactory, GoalCategoryFactory
-
-pytest_plugins = "tests.fixtures"
+from tests.factories import UserFactory, BoardFactory, BoardParticipantFactory
 
 register(UserFactory)
-register(GoalFactory)
-register(GoalCommentFactory)
-register(GoalCategoryFactory)
+register(BoardFactory)
+register(BoardParticipantFactory)
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def auth_client(client, user):
+    client.force_login(user)
+    return client
