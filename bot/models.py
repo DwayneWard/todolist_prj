@@ -12,6 +12,9 @@ class TgUser(models.Model):
     )
     tg_chat_id = models.BigIntegerField(
         verbose_name='Telegram Chat ID',
+        null=True,
+        blank=True,
+        default=None,
     )
     username = models.CharField(
         max_length=512,
