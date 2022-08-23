@@ -8,6 +8,9 @@ from goals.models import Goal
 
 
 class Command(BaseCommand):
+    """
+    Команда для запуска бота. В продакшене работает автоматически
+    """
     help = "run bot"
 
     def __init__(self, *args, **kwargs):

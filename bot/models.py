@@ -6,6 +6,9 @@ CODE_VOCABULARY = "qwertyuasdfghkzxvbnm123456789"
 
 
 class TgUser(models.Model):
+    """
+    Модель пользователя для телеграмм-бота
+    """
     tg_id = models.BigIntegerField(
         verbose_name="Telegram ID",
         unique=True,

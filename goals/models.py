@@ -23,6 +23,9 @@ class DatesModel(models.Model):
 
 
 class Board(DatesModel):
+    """
+    Модель доски
+    """
     title = models.CharField(verbose_name="Название", max_length=255)
     is_deleted = models.BooleanField(verbose_name="Удалена", default=False)
 
@@ -32,6 +35,10 @@ class Board(DatesModel):
 
 
 class BoardParticipant(DatesModel):
+    """
+    Модель участника доски.
+    Разделение по ролям.
+    """
     class Meta:
         unique_together = ("board", "user")
         verbose_name = "Участник"
@@ -63,6 +70,9 @@ class BoardParticipant(DatesModel):
 
 
 class GoalCategory(DatesModel):
+    """
+    Модель категории для целей
+    """
     board = models.ForeignKey(
         Board,
         verbose_name="Доска",
@@ -82,6 +92,10 @@ class GoalCategory(DatesModel):
 
 
 class Goal(DatesModel):
+    """
+    Модель целей.
+    Реализован выбор статуса и приоритета
+    """
     class Status(models.IntegerChoices):
         to_do = 1, "К выполнению"
         in_progress = 2, "В процессе"
@@ -147,6 +161,9 @@ class Goal(DatesModel):
 
 
 class GoalComment(DatesModel):
+    """
+    Модель комментариев к целям
+    """
     user = models.ForeignKey(
         User,
         verbose_name="Автор",

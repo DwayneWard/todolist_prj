@@ -29,7 +29,7 @@ class TestBoardListView:
         BoardParticipant.Role.writer,
         BoardParticipant.Role.reader,
     ], ids=['owner', 'writer', 'reader'])
-    def test_board_participant(self, auth_client, board_participant):
+    def test_board_participant(self, auth_client, board_participant, board_participant__role):
         response = auth_client.get('/goals/board/list')
         assert response.status_code == 200
         data = response.json()
@@ -43,7 +43,7 @@ class TestBoardListView:
         (True, 0),
         (False, 1)
     ], ids=['deleted', 'not deleted'])
-    def test_is_deleted(self, auth_client, board, board_participant, boards_count):
+    def test_is_deleted(self, auth_client, board, board_participant, boards_count, board__is_deleted):
         response = auth_client.get('/goals/board/list')
         assert response.status_code == 200
         data = response.json()

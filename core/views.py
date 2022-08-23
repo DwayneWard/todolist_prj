@@ -10,12 +10,18 @@ from core.serializers import CreateUserSerializer, LoginSerializer, UserSerializ
 
 
 class SignUpView(CreateAPIView):
+    """
+    Регистрация
+    """
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = CreateUserSerializer
 
 
 class LoginView(GenericAPIView):
+    """
+    Логин
+    """
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
@@ -28,6 +34,9 @@ class LoginView(GenericAPIView):
 
 
 class ProfileView(RetrieveUpdateDestroyAPIView):
+    """
+    Профиль авторизованного пользователя
+    """
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer

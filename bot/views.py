@@ -9,6 +9,9 @@ from bot.tg.client import TgClient
 
 
 class VerificationView(GenericAPIView):
+    """
+    Верификация телеграмм-бота в приложении
+    """
     model = TgUser
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TgUserSerializer

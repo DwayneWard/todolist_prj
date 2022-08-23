@@ -4,6 +4,9 @@ from bot.tg.dc import GetUpdatesResponse, SendMessageResponse
 
 
 class TgClient:
+    """
+    Клиент телеграмм-бота
+    """
     def __init__(self, token):
         self.token = token
 
